@@ -45,7 +45,7 @@ export const Home = () => {
   return (
     <div ref={refWrapper} className={styles.wrapper}>
       {renderView(viewMode)}
-      <ViewToggle onChange={setViewMode} />
+      <ViewToggle onChange={setViewMode} currentMode={viewMode} />
     </div>
   );
 }

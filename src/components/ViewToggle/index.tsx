@@ -19,7 +19,7 @@ const getViewIcon = (mode: ViewMode) => {
   }
 }
 
-export const ViewToggle = ({ onChange }: ViewToggleProps) => {
+export const ViewToggle = ({ currentMode, onChange }: ViewToggleProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const onBodyClick = (event: Event) => {
@@ -48,6 +48,8 @@ export const ViewToggle = ({ onChange }: ViewToggleProps) => {
         {VIEW_MODES.map(mode => (
           <Button
             key={mode}
+            className={styles.option}
+            data-active={`${mode === currentMode}`}
             onClick={() => onChange(mode)}
             icon={getViewIcon(mode)}
           />

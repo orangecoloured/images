@@ -81,3 +81,16 @@
     }
   }
 }
+
+.option {
+  & img {
+    opacity: 0.99;
+    transition: opacity 150ms ease-in-out;
+  }
+
+  &[data-active="true"] {
+    & img {
+      opacity: 0.6;
+    }
+  }
+}
