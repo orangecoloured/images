@@ -1,0 +1,100 @@
+@use "../../styles/variables" as vars;
+
+.wrapper {
+  position: relative;
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.list {
+  display: flex;
+  flex-flow: row nowrap;
+  overflow-x: auto;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  padding: 0;
+  scroll-snap-type: x mandatory;
+
+  & li {
+    flex-shrink: 0;
+    width: 100dvw;
+    height: 100dvh;
+    overflow: hidden;
+    scroll-snap-align: center;
+
+    & img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+.controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  transform: translate3d(0, -50%, 0);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 0 vars.$spacing-md-mobile;
+
+  & button {
+    pointer-events: auto;
+  }
+
+  @media (orientation: landscape) {
+    padding: 0 vars.$spacing-md-desktop;
+  }
+}
+
+.button {
+  &[data-dir="prev"] {
+    & img {
+      transform: rotateZ(180deg);
+    }
+  }
+
+  &[data-active="false"] {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    aspect-ratio: 1;
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+.counter {
+  position: absolute;
+  background-color: white;
+  color: black;
+  padding: calc(vars.$spacing-s-mobile / 2) vars.$spacing-s-mobile;
+  top: vars.$spacing-md-mobile;
+  right: vars.$spacing-md-mobile;
+  font-size: 0.6em;
+  font-family: sans-serif;
+  border-radius: max(100dvw, 100dvh);
+  box-shadow: 0 0 vars.$spacing-s-mobile 0 rgba(0, 0, 0, 0.25);
+
+  @media (orientation: landscape) {
+    padding: calc(vars.$spacing-s-desktop / 2) vars.$spacing-s-desktop;
+    top: auto;
+    bottom: vars.$spacing-md-desktop;
+    right: vars.$spacing-md-desktop;
+    box-shadow: 0 0 vars.$spacing-s-desktop 0 rgba(0, 0, 0, 0.25);
+    font-size: 0.4em;
+  }
+}

@@ -1,0 +1,21 @@
+@use "../../styles/variables" as vars;
+
+.wrapper {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+
+  & li {
+    width: 100%;
+
+    & img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  @media (orientation: landscape) {
+    margin: 0 auto;
+    max-width: vars.$max-content-width-desktop;
+  }
+}

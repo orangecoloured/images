@@ -1,0 +1,83 @@
+@use "sass:math";
+@use "../../styles/variables" as vars;
+
+.wrapper {
+  position: fixed;
+  left: vars.$spacing-md-mobile;
+  bottom: vars.$spacing-md-mobile;
+
+  @media (orientation: landscape) {
+    left: vars.$spacing-md-desktop;
+    top: vars.$spacing-md-desktop;
+    bottom: initial;
+  }
+}
+
+.toggle {
+  position: relative;
+  z-index: 2;
+
+  & img {
+    opacity: 0.99;
+    transition: opacity 150ms ease-in-out;
+  }
+
+  &[data-open="true"] {
+    & img {
+      opacity: 0.6;
+    }
+  }
+}
+
+.controls {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 0 vars.$spacing-md-mobile;
+  position: absolute;
+  left: calc(100% + vars.$spacing-md-mobile);
+  bottom: 0;
+  z-index: 1;
+
+  & button {
+    transition-duration: 150ms;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+    transform: translate3d(0, 0, 0);
+
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) {
+        transition-delay: math.random() * 100ms;
+      }
+    }
+  }
+
+  &[data-open="false"] {
+    pointer-events: none;
+
+    & button {
+      transition-timing-function: ease-in;
+
+      @for $i from 1 through 4 {
+        &:nth-child(#{$i}) {
+          transform: translate3d(calc((-100% * $i) - ($i * vars.$spacing-md-mobile)), 0, 0) scale(math.random());
+        }
+      }
+    }
+  }
+
+  @media (orientation: landscape) {
+    gap: 0 vars.$spacing-md-desktop;
+    left: calc(100% + vars.$spacing-md-desktop);
+
+    &[data-open="false"] {
+      & button {
+        @for $i from 1 through 4 {
+          &:nth-child(#{$i}) {
+            transform: translate3d(calc((-100% * $i) - ($i * vars.$spacing-md-desktop)), 0, 0) scale(math.random());
+          }
+        }
+      }
+    }
+  }
+}

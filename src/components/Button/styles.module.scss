@@ -1,0 +1,66 @@
+@use "../../styles/variables" as vars;
+
+.icon {
+  display: block;
+  aspect-ratio: 1;
+  max-width: none;
+  pointer-events: none;
+}
+
+.button {
+  display: block;
+  background-color: white;
+  padding: vars.$spacing-s-mobile;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 50ms ease-in-out;
+  outline: none;
+  user-select: none;
+  transform: translate3d(0, 0, 0);
+  box-shadow: 0 0 vars.$spacing-s-mobile 0 rgba(0, 0, 0, 0.25);
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+
+  &:active {
+    transform: translate3d(0, 0, 0) scale(0.95);
+  }
+
+  &[data-size="m"] {
+    padding: vars.$spacing-s-mobile;
+
+    & .icon {
+      width: vars.$spacing-l-mobile;
+    }
+  }
+
+  &[data-size="s"] {
+    padding: calc(vars.$spacing-s-mobile / 2);
+
+    & .icon {
+      width: vars.$spacing-md-mobile;
+    }
+  }
+
+  @media (orientation: landscape) {
+    box-shadow: 0 0 vars.$spacing-s-desktop 0 rgba(0, 0, 0, 0.25);
+
+    &[data-size="m"] {
+      padding: vars.$spacing-s-desktop;
+
+      & .icon {
+        width: vars.$spacing-l-desktop;
+      }
+    }
+
+    &[data-size="s"] {
+      padding: calc(vars.$spacing-s-desktop / 2);
+
+      & .icon {
+        width: vars.$spacing-md-desktop;
+      }
+    }
+  }
+}

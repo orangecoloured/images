@@ -1,0 +1,99 @@
+@use "../../styles/variables" as vars;
+
+.wrapper {
+  display: flex;
+  list-style: none;
+  flex-flow: column nowrap;
+  gap: vars.$spacing-md-mobile 0;
+  padding: vars.$spacing-md-mobile;
+  width: 100%;
+
+  & li {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: vars.$spacing-md-mobile 0;
+    background-color: white;
+    border-radius: vars.$spacing-s-mobile;
+    overflow: hidden;
+
+    & img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  @media (orientation: landscape) {
+    margin: 0 auto;
+    gap: vars.$spacing-md-desktop;
+    padding: vars.$spacing-md-desktop;
+    max-width: calc(vars.$max-content-width-desktop + vars.$spacing-md-desktop + vars.$spacing-md-desktop);
+    flex-flow: row wrap;
+
+    & li {
+      width: calc(50% - (vars.$spacing-md-desktop / 2));
+      gap: vars.$spacing-md-desktop 0;
+      border-radius: vars.$spacing-s-desktop;
+    }
+  }
+}
+
+.info {
+  font-family: sans-serif;
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 0 vars.$spacing-md-mobile vars.$spacing-md-mobile vars.$spacing-md-mobile;
+
+  & h4 {
+    font-size: 1.6em;
+    text-transform: capitalize;
+  }
+
+  @media (orientation: landscape) {
+    padding: 0 vars.$spacing-md-desktop vars.$spacing-md-desktop vars.$spacing-md-desktop;
+
+    & h4 {
+      font-size: 0.8em;
+    }
+  }
+}
+
+.bottom {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  & p {
+    font-size: 0.8em;
+  }
+
+  @media (orientation: landscape) {
+    & p {
+      font-size: 0.4em;
+    }
+  }
+}
+
+.experience {
+  margin-left: auto;
+  font-size: 2em;
+  font-weight: bold;
+  position: relative;
+  font-style: italic;
+  color: darkslategray;
+
+  &:before {
+    content: "Base experience";
+    position: absolute;
+    top: 100%;
+    right: 0;
+    font-size: 0.25em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    line-height: 0;
+    font-style: normal;
+  }
+
+  @media (orientation: landscape) {
+    font-size: 1em;
+  }
+}

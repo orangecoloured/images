@@ -1,0 +1,24 @@
+@use "../../styles/variables" as vars;
+
+@keyframes spin {
+  0% { transform: rotateZ(0deg); }
+  100% { transform: rotateZ(360deg); }
+}
+
+.wrapper {
+
+}
+
+.spinner {
+  width: vars.$spacing-md-mobile;
+  aspect-ratio: 1;
+  border: calc(vars.$spacing-s-mobile / 3) solid white;
+  border-radius: 50%;
+  animation: spin infinite 600ms linear;
+
+  @media (orientation: landscape) {
+    border: calc(vars.$spacing-s-desktop / 1.5) solid white;
+  }
+
+  border-top-color: transparent;
+}
