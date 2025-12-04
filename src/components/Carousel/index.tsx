@@ -27,7 +27,7 @@ export const Carousel = ({ data }: { data?: Pokemon[] }) => {
       next: !!elementNext,
     })
   }
-  const updateUiOnScrollDebounced = useDebounce(updateUiOnScroll, 50);
+  const updateUiOnScrollDebounced = useDebounce(updateUiOnScroll, 200);
   const isReady = useRef(false);
 
   useEffect(() => {
